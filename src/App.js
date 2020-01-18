@@ -1,25 +1,41 @@
 import React from 'react'
 import "./App.css";
 
-const App = () => {
+class App extends React.Component {
 
-// Hacker News: Relevant URIs.
-const baseUrl = 'https://hacker-news.firebaseio.com/v0/';
-const newStoriesUrl = `${baseUrl}newstories.json`;
-const storyUrl = `${baseUrl}items/`
+getStoryIds = async () => {
+  // Hacker News: Relevant URIs.
+  const query = 'trump'
+  const baseUrl = `http://hn.algolia.com/api/v1/search?query=${query}`;
+  const newStoriesUrl = `${baseUrl}newstories.json`;
 
-
-const getStoryIds = async () => {
-  const response = await fetch(newStoriesUrl); 
+  // Fetch Story Ids
+  const response = await fetch(baseUrl); 
   const data = await response.json()
-  return data
+  console.log(data)
 }
 
-  return (
-    <div className="App">
-      <p></p>
-    </div>
-  );
+getStories = async (storyIds) => {
+  // Hacker New: Relevant URIs.
+  const baseUrl = 'https://hacker-news.firebaseio.com/v0/';
+  const storyUrl = `${baseUrl}/item/`
+ 
+  const response = await fetch(storyUrl); 
+  const data = await response.json()
+  console.log(data)
 }
 
+
+
+
+  render() {
+    this.getStoryIds()
+    return (
+      <div className="App">
+        <p></p>
+      </div>
+    );
+  }
+
+}
 export default App;
