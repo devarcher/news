@@ -1,41 +1,43 @@
-import React from 'react'
+import React from "react";
 import "./App.css";
+import QueryPage from "./components/QueryPage";
 
 class App extends React.Component {
+  state = {
+    query: ""
+  };
 
-getStoryIds = async () => {
-  // Hacker News: Relevant URIs.
-  const query = 'trump'
-  const baseUrl = `http://hn.algolia.com/api/v1/search?query=${query}`;
-  const newStoriesUrl = `${baseUrl}newstories.json`;
+  queryResponse = async () => {
+    // Hacker News: Relevant URIs.
+    const { query } = this.state;
+    const baseUrl = `http://hn.algolia.com/api/v1/search?query=${query}`;
 
-  // Fetch Story Ids
-  const response = await fetch(baseUrl); 
-  const data = await response.json()
-  console.log(data)
-}
+    // Fetch Queries
+    const response = await fetch(baseUrl);
+    const data = await response.json();
+    console.log(data);
+  };
 
-getStories = async (storyIds) => {
-  // Hacker New: Relevant URIs.
-  const baseUrl = 'https://hacker-news.firebaseio.com/v0/';
-  const storyUrl = `${baseUrl}/item/`
- 
-  const response = await fetch(storyUrl); 
-  const data = await response.json()
-  console.log(data)
-}
+  querySubmit = e => {
+    e.preventDefault();
+    this.queryResponse();
+  };
 
-
-
+  handleQuery = e => {
+    this.setState({ query: e.target.value });
+  };
 
   render() {
-    this.getStoryIds()
     return (
       <div className="App">
-        <p></p>
+        <QueryPage
+          query={this.state.query}
+          handleQuery={this.handleQuery}
+          querySubmit={this.querySubmit}
+        />
       </div>
     );
   }
-
 }
+
 export default App;
