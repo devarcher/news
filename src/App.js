@@ -13,20 +13,19 @@ class App extends React.Component {
     const { query } = this.state;
     const baseUrl = `http://hn.algolia.com/api/v1/search?query=${query}`;
 
-    // Fetch Queries
+    // Fetch Queries and condition response data
     const response = await fetch(baseUrl);
     const data = await response.json();
-    // console.log(data.hits)
+    console.log(data.hits)
     const articles = data.hits.map(article => ({
       id: article.objectID,
       title: article.title,
       author: article.author,
       points: article.points,
       date_created: article.created_at,
-      comments: article.comments,
       link: article.url
     }));
-    console.log(articles);
+    // console.log(articles);
     this.setState({ articles: articles });
   };
 

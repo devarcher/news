@@ -24,11 +24,15 @@ class QueryPage extends React.Component {
         </button>
         <div>
           <ul className="articlesUl">
-            {/* {articles.map(article => (
-              <li className="articleLi" key={article.objectID}>
-                {article.title}
-              </li> */}
-            {/* ))} */}
+            {articles.map(article => (
+              <li className="articleLi" key={article.id}>
+                <div className="titleAuthor">
+                  {article.title} Author: {article.author}
+                </div>
+                <div>Link: {article.link} </div>
+                <div>Points: {article.points} Date Written: {article.date_created}</div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
