@@ -4,7 +4,8 @@ import QueryPage from "./components/QueryPage";
 
 class App extends React.Component {
   state = {
-    query: ""
+    query: "",
+    articles: []
   };
 
   queryResponse = async () => {
@@ -15,7 +16,18 @@ class App extends React.Component {
     // Fetch Queries
     const response = await fetch(baseUrl);
     const data = await response.json();
-    console.log(data);
+    // console.log(data.hits)
+    const articles = data.hits.map(article => ({
+      id: article.objectID,
+      title: article.title,
+      author: article.author,
+      points: article.points,
+      date_created: article.created_at,
+      comments: article.comments,
+      link: article.url
+    }));
+    console.log(articles);
+    this.setState({ articles: articles });
   };
 
   querySubmit = e => {
@@ -32,6 +44,7 @@ class App extends React.Component {
       <div className="App">
         <QueryPage
           query={this.state.query}
+          articles={this.state.articles}
           handleQuery={this.handleQuery}
           querySubmit={this.querySubmit}
         />

@@ -2,7 +2,8 @@ import React from "react";
 
 class QueryPage extends React.Component {
   render() {
-    const { query, handleQuery, querySubmit } = this.props;
+    const { query, articles, handleQuery, querySubmit } = this.props;
+
     return (
       <div>
         <input
@@ -21,8 +22,14 @@ class QueryPage extends React.Component {
         >
           Submit
         </button>
-        <div className="results">
-          <ul></ul>
+        <div>
+          <ul className="articlesUl">
+            {/* {articles.map(article => (
+              <li className="articleLi" key={article.objectID}>
+                {article.title}
+              </li> */}
+            {/* ))} */}
+          </ul>
         </div>
       </div>
     );
