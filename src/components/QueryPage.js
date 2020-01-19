@@ -1,56 +1,58 @@
 import React from "react";
-import moment from 'moment';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const QueryPage = (props) => {
-    const {
-      query,
-      articles,
-      selectHandler,
-      queryHandler,
-      submitHandler
-    } = props;
+import moment from "moment";
 
-    return (
-      <div>
-          <select onChange={e => selectHandler(e)}>
-            <option value="general">General Search</option>
-            <option value="author">Search By Author</option>
-            <option value="date">Search By Date</option>
-          </select>
-          <input
-            type="text"
-            placeholder="Search"
-            value={query}
-            className="searchBar"
-            onChange={e => {
-              queryHandler(e);
-            }}
-          />
-          <button
-            className="buttonSubmit"
-            onClick={e => {
-              submitHandler(e);
-            }}
-          >
-            Submit
-          </button>
-        <div>
-          <ul className="articlesUl">
-            {articles.map(article => (
-              <li className="articleLi" key={article.id}>
-                <div className="titleAuthor">
-                  {article.title} Author: {article.author}
-                </div>
-                <div>Link: {article.link ? article.link : "No Link Available"} </div>
-                <div>
-                  Points: {article.points} Date Written: {moment(article.date_created).format('MM/DD/YYYY')}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+const QueryPage = props => {
+  const { query, articles, selectHandler, queryHandler, submitHandler } = props;
+
+  return (
+    <div className="container">
+      <div className="searchContainer">
+        <select className="selectorBox" onChange={e => selectHandler(e)}>
+          <option value="general">General Search</option>
+          <option value="author">Search By Author</option>
+          <option value="date">Search By Date</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Search"
+          value={query}
+          className="searchBar"
+          onChange={e => {
+            queryHandler(e);
+          }}
+        />
+        <button
+          className="buttonSubmit"
+          onClick={e => {
+            submitHandler(e);
+          }}
+        >
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
       </div>
-    );
-  }
+      <div className="articlesContainer">
+        <ul className="articlesUl">
+          {articles.map(article => (
+            <li className="articleLi" key={article.id}>
+              <div className="titleAuthor">
+                {article.title} Author: {article.author}
+              </div>
+              <div>
+                Link: {article.link ? article.link : "No Link Available"}{" "}
+              </div>
+              <div>
+                Points: {article.points} Date Written:{" "}
+                {moment(article.date_created).format("MM/DD/YYYY")}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 export default QueryPage;
