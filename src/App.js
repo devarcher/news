@@ -5,18 +5,19 @@ import QueryPage from "./components/QueryPage";
 class App extends React.Component {
   state = {
     query: "",
-    articles: []
+    articles: [],
+    searchOption: `http://hn.algolia.com/api/v1/search?query=`
   };
 
   queryResponse = async () => {
     // Hacker News: Relevant URIs.
+    const { searchOption } = this.state;
     const { query } = this.state;
-    const baseUrl = `http://hn.algolia.com/api/v1/search?query=${query}`;
 
     // Fetch Queries and condition response data
-    const response = await fetch(baseUrl);
+    const response = await fetch(`${searchOption}${query}&tags=story`);
     const data = await response.json();
-    console.log(data.hits)
+    console.log(data.hits);
     const articles = data.hits.map(article => ({
       id: article.objectID,
       title: article.title,
@@ -38,6 +39,27 @@ class App extends React.Component {
     this.setState({ query: e.target.value });
   };
 
+  selectorHandler = e => {
+
+    if (e.target.value === "author") {
+      this.setState({
+        searchOption: `http://hn.algolia.com/api/v1/search?tags=story,author_`
+      });
+    }
+
+    if (e.target.value === "date") {
+      this.setState({
+        searchOption: `http://hn.algolia.com/api/v1/search_by_date?query=`
+      });
+    }
+
+    if (e.target.value === "general") {
+      this.setState({
+        searchOption: `http://hn.algolia.com/api/v1/search?query=`
+      });
+    }
+  };
+
   render() {
     return (
       <div className="App">
@@ -46,6 +68,7 @@ class App extends React.Component {
           articles={this.state.articles}
           handleQuery={this.handleQuery}
           querySubmit={this.querySubmit}
+          selectorHandler={this.selectorHandler}
         />
       </div>
     );
