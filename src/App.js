@@ -40,7 +40,6 @@ class App extends React.Component {
   };
 
   selectorHandler = e => {
-
     if (e.target.value === "author") {
       this.setState({
         searchOption: `http://hn.algolia.com/api/v1/search?tags=story,author_`
