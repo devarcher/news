@@ -1,41 +1,39 @@
 import React from "react";
+import moment from 'moment';
 
-class QueryPage extends React.Component {
-  render() {
+const QueryPage = (props) => {
     const {
       query,
       articles,
-      selectorHandler,
-      handleQuery,
-      querySubmit
-    } = this.props;
+      selectHandler,
+      queryHandler,
+      submitHandler
+    } = props;
 
     return (
       <div>
-        <label>
-          Search Hacker News!!!
-          <select onChange={e => selectorHandler(e)}>
+          <select onChange={e => selectHandler(e)}>
             <option value="general">General Search</option>
             <option value="author">Search By Author</option>
             <option value="date">Search By Date</option>
           </select>
           <input
             type="text"
+            placeholder="Search"
             value={query}
             className="searchBar"
             onChange={e => {
-              handleQuery(e);
+              queryHandler(e);
             }}
           />
           <button
             className="buttonSubmit"
             onClick={e => {
-              querySubmit(e);
+              submitHandler(e);
             }}
           >
             Submit
           </button>
-        </label>
         <div>
           <ul className="articlesUl">
             {articles.map(article => (
@@ -45,7 +43,7 @@ class QueryPage extends React.Component {
                 </div>
                 <div>Link: {article.link ? article.link : "No Link Available"} </div>
                 <div>
-                  Points: {article.points} Date Written: {article.date_created}
+                  Points: {article.points} Date Written: {moment(article.date_created).format('MM/DD/YYYY')}
                 </div>
               </li>
             ))}
@@ -54,6 +52,5 @@ class QueryPage extends React.Component {
       </div>
     );
   }
-}
 
 export default QueryPage;

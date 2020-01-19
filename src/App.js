@@ -17,7 +17,7 @@ class App extends React.Component {
     // Fetch Queries and condition response data
     const response = await fetch(`${searchOption}${query}&tags=story`);
     const data = await response.json();
-    console.log(data.hits);
+    // console.log(data.hits);
     const articles = data.hits.map(article => ({
       id: article.objectID,
       title: article.title,
@@ -30,16 +30,16 @@ class App extends React.Component {
     this.setState({ articles: articles });
   };
 
-  querySubmit = e => {
+  submitHandler = e => {
     e.preventDefault();
     this.queryResponse();
   };
 
-  handleQuery = e => {
+  queryHandler = e => {
     this.setState({ query: e.target.value });
   };
 
-  selectorHandler = e => {
+  selectHandler = e => {
     if (e.target.value === "author") {
       this.setState({
         searchOption: `http://hn.algolia.com/api/v1/search?tags=story,author_`
@@ -65,9 +65,9 @@ class App extends React.Component {
         <QueryPage
           query={this.state.query}
           articles={this.state.articles}
-          handleQuery={this.handleQuery}
-          querySubmit={this.querySubmit}
-          selectorHandler={this.selectorHandler}
+          queryHandler={this.queryHandler}
+          submitHandler={this.submitHandler}
+          selectHandler={this.selectHandler}
         />
       </div>
     );
