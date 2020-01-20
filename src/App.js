@@ -17,10 +17,10 @@ class App extends React.Component {
 
     // Fetch Queries and condition response data
     if (searchOption !== `http://hn.algolia.com/api/v1/search_by_date?query=`) {
-      console.log("not date");
+      // console.log("not date");
       response = await fetch(`${searchOption}${query}`);
     } else {
-      console.log("byDate");
+      // console.log("byDate");
       response = await fetch(`${searchOption}${query}&tags=story`);
     }
 

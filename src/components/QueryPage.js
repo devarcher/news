@@ -38,22 +38,14 @@ const QueryPage = props => {
           {articles.map(article => (
             <li className="articleLi" key={article.id}>
               <div className="titleAuthor">
-                <h1>{article.title}</h1>
-                <h2>Author: {article.author}</h2>
+                 {article.link ? <a href={article.link} target="blank_"><h1>{article.title}</h1></a> : <h1>{article.title} -- No Link</h1>}
+                <h3>Author: {article.author}</h3>
               </div>
+             
               <div>
-                Link:{" "}
-                {article.link ? (
-                  <a href={article.link} target="blank_">
-                    {article.link}
-                  </a>
-                ) : (
-                  "No Link Available"
-                )}{" "}
-              </div>
-              <div>
-                Points: {article.points} Date:{" "}
-                {moment(article.date_created).format("MM/DD/YYYY")}
+                <h4>Points: {article.points}</h4> 
+                <h4>Date:
+                {moment(article.date_created).format("MM/DD/YYYY")}</h4>
               </div>
             </li>
           ))}
