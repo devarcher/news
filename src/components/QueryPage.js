@@ -41,7 +41,7 @@ const QueryPage = props => {
                 {article.title} Author: {article.author}
               </div>
               <div>
-                Link: {article.link ? article.link : "No Link Available"}{" "}
+                Link: {article.link ? <a href={article.link} target="blank_">{article.link}</a> : "No Link Available"}{" "}
               </div>
               <div>
                 Points: {article.points} Date Written:{" "}
