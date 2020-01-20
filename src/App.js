@@ -17,10 +17,10 @@ class App extends React.Component {
 
     // Fetch Queries and condition response data
     if (searchOption !== `http://hn.algolia.com/api/v1/search_by_date?query=`) {
-      console.log('not date')
+      console.log("not date");
       response = await fetch(`${searchOption}${query}`);
     } else {
-      console.log('byDate')
+      console.log("byDate");
       response = await fetch(`${searchOption}${query}&tags=story`);
     }
 
@@ -48,21 +48,25 @@ class App extends React.Component {
   };
 
   selectHandler = e => {
+    const generalEndpoint = `http://hn.algolia.com/api/v1/search?query=`;
+    const authorEndpoint = `http://hn.algolia.com/api/v1/search?tags=author_`;
+    const dateEndpoint = `http://hn.algolia.com/api/v1/search_by_date?query=`;
+
     if (e.target.value === "author") {
       this.setState({
-        searchOption: `http://hn.algolia.com/api/v1/search?tags=author_`
+        searchOption: authorEndpoint
       });
     }
 
     if (e.target.value === "date") {
       this.setState({
-        searchOption: `http://hn.algolia.com/api/v1/search_by_date?query=`
+        searchOption: dateEndpoint
       });
     }
 
     if (e.target.value === "general") {
       this.setState({
-        searchOption: `http://hn.algolia.com/api/v1/search?query=`
+        searchOption: generalEndpoint
       });
     }
   };
