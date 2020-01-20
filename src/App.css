@@ -21,10 +21,10 @@ body {
 }
 
 .selectorBox {
-  padding: 1rem;
+  padding: .5rem;
   border: 3px solid rgb(147, 177, 194);
   border-radius: 40px;
-  font-size: 1rem;
+  font-size: 1.25rem;
   background: white;
   outline: 0;
   transition: 0.1s ease-out;
@@ -38,6 +38,36 @@ body {
 
 .searchBar {
   width: 30%;
-  margin-left: 10px;
+  padding: 1rem;
+  border: 3px solid rgb(147, 177, 194);
   border-radius: 40px;
+  font-size: 2rem;
+  background: white;
+  outline: 0;
+  margin-left: 1rem;
+}
+
+.searchBar:focus {
+  box-shadow: 0px 0px 15px 2px rgb(211, 223, 223);
+}
+
+.buttonSubmit {
+  width: 65px;
+  padding: 1rem;
+  border: 3px solid rgb(147, 177, 194);
+  border-radius: 50%;
+  font-size: 1.25em;
+  background: white;
+  outline: 0;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.buttonSubmit:hover {
+  box-shadow: 0px 0px 15px 2px rgb(211, 223, 223);
+}
+
+.buttonSubmit:active {
+  color: rgb(147, 177, 194);
+  font-size: 1rem;
 }
