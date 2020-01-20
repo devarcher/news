@@ -20,6 +20,7 @@ class App extends React.Component {
       // console.log("not date");
       response = await fetch(`${searchOption}${query}`);
     } else {
+      console.log(query)
       // console.log("byDate");
       response = await fetch(`${searchOption}${query}&tags=story`);
     }

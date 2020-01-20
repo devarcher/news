@@ -1,4 +1,5 @@
 import React from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -42,7 +43,6 @@ const QueryPage = props => {
                  {article.link ? <a href={article.link} target="blank_"><h1>{article.title}</h1></a> : <h1>{article.title} -- No Link</h1>}
                 <h2>Author: {article.author}</h2>
               </div>
-             
               <div>
                 <h3>Points: {article.points}</h3> 
                 <h3>Date:
