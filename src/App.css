@@ -21,7 +21,7 @@ body {
 }
 
 .selectorBox {
-  padding: .5rem;
+  padding: 0.5rem;
   border: 3px solid rgb(147, 177, 194);
   border-radius: 40px;
   font-size: 1.25rem;
@@ -44,7 +44,7 @@ body {
   font-size: 2rem;
   background: white;
   outline: 0;
-  margin-left: 1rem;
+  margin-left: .25rem;
 }
 
 .searchBar:focus {
@@ -60,10 +60,11 @@ body {
   background: white;
   outline: 0;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-left: .25rem;
 }
 
 .buttonSubmit:hover {
+  color: rgb(147, 177, 194);  
   box-shadow: 0px 0px 15px 2px rgb(211, 223, 223);
 }
 
