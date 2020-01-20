@@ -13,9 +13,17 @@ class App extends React.Component {
     // Hacker News: Relevant URIs.
     const { searchOption } = this.state;
     const { query } = this.state;
+    let response;
 
     // Fetch Queries and condition response data
-    const response = await fetch(`${searchOption}${query}&tags=story`);
+    if (searchOption !== `http://hn.algolia.com/api/v1/search_by_date?query=`) {
+      console.log('not date')
+      response = await fetch(`${searchOption}${query}`);
+    } else {
+      console.log('byDate')
+      response = await fetch(`${searchOption}${query}&tags=story`);
+    }
+
     const data = await response.json();
     // console.log(data.hits);
     const articles = data.hits.map(article => ({
@@ -42,7 +50,7 @@ class App extends React.Component {
   selectHandler = e => {
     if (e.target.value === "author") {
       this.setState({
-        searchOption: `http://hn.algolia.com/api/v1/search?tags=story,author_`
+        searchOption: `http://hn.algolia.com/api/v1/search?tags=author_`
       });
     }
 

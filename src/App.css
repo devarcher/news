@@ -2,16 +2,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 body {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  width: 90vw;
-  margin: 35px auto;
+  width: 65vw;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .searchContainer {
@@ -37,14 +44,14 @@ body {
 }
 
 .searchBar {
-  width: 30%;
+  width: 30vw;
   padding: 1rem;
   border: 3px solid rgb(147, 177, 194);
   border-radius: 40px;
   font-size: 2rem;
   background: white;
   outline: 0;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
 }
 
 .searchBar:focus {
@@ -60,15 +67,29 @@ body {
   background: white;
   outline: 0;
   cursor: pointer;
-  margin-left: .25rem;
+  margin-left: 0.25rem;
 }
 
 .buttonSubmit:hover {
-  color: rgb(147, 177, 194);  
+  color: rgb(147, 177, 194);
   box-shadow: 0px 0px 15px 2px rgb(211, 223, 223);
 }
 
 .buttonSubmit:active {
   color: rgb(147, 177, 194);
   font-size: 1rem;
+}
+
+.articlesContainer {
+  padding: 3rem;
+}
+
+.articleLi {
+  border: 1px solid rgba(147, 177, 194, 0.5);
+  margin: 15px;
+  padding: 1rem;
+}
+
+.articleLi:nth-child(even) {
+  background: rgba(218, 234, 245, 0.5);
 }
